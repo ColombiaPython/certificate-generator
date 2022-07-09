@@ -16,7 +16,7 @@ if len(sys.argv) != 2:
     exit()
 
 with open(sys.argv[1], 'rt', encoding="utf-8") as fh:
-    config = yaml.load(fh)
+    config = yaml.safe_load(fh)
 
 with open(config['svg_source'], "rt", encoding="utf-8") as fh:
     content_base = fh.read()
@@ -44,8 +44,11 @@ for data in config['replace_info']:
         fh.write(content)
 
     # generate PDF
-    distinct = data[config['result_distinct']].lower().replace(" ", "")
+    distinct = data[config['result_distinct']].lower().replace(" ", "_")
     result = "{}-{}.pdf".format(config['result_prefix'], distinct)
 
-    cmd = ["C:/Program Files/Inkscape/inkscape.exe", '--export-pdf={}'.format(result), tmpfile]
+    # Below you need to add the route to the executable of inkscape
+    # e.g Windows: C:/Program Files/Inkscape/inkscape.exe
+    # e.g Mac: /Applications/Inkscape.app/Contents/MacOS/inkscape
+    cmd = ["/Applications/Inkscape.app/Contents/MacOS/inkscape", '--export-pdf={}'.format(result), tmpfile]
     subprocess.check_call(cmd)
