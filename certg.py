@@ -46,28 +46,30 @@ def main():
     for data in config['replace_info']:
         replacing_attrs.update(data)
 
-    for data in config['replace_info']:
+        # for data in config['replace_info']:
         content = content_base
         for attr in replacing_attrs:
             value = data.get(attr)
             if value is None:
                 value = ""
             content = content.replace("{{" + attr + "}}", value.upper())
-    for attr, value in config['result_event_data'].items():
-        content = content.replace("{{" + attr + "}}", value.upper())
+        for attr, value in config['result_event_data'].items():
+            content = content.replace("{{" + attr + "}}", value.upper())
 
-    _, tmpfile = tempfile.mkstemp()
-    with open(tmpfile, "wt", encoding="utf-8") as fh:
-        fh.write(content)
 
-    distinct = data[config['result_distinct']].lower().replace(" ", "_")
-    result = "{}-{}.pdf".format(config['result_prefix'], distinct)
+        _, tmpfile = tempfile.mkstemp()
+        with open(tmpfile, "wt", encoding="utf-8") as fh:
+            fh.write(content)
 
-    # Below you need to add the route to the executable of inkscape
-    # e.g Windows: C:/Program Files/Inkscape/inkscape.exe
-    # e.g Mac: /Applications/Inkscape.app/Contents/MacOS/inkscape
-    cmd = ["/Applications/Inkscape.app/Contents/MacOS/inkscape", '--export-pdf={}'.format(result), tmpfile]
-    subprocess.check_call(cmd)
+        distinct = data[config['result_distinct']].lower().replace(" ", "_")
+        result = "{}-{}.pdf".format(config['result_prefix'], distinct)
+
+        # Below you need to add the route to the executable of inkscape
+        # e.g Windows: C:/Program Files/Inkscape/inkscape.exe
+        # e.g Mac: /Applications/Inkscape.app/Contents/MacOS/inkscape
+        cmd = ["/Applications/Inkscape.app/Contents/MacOS/inkscape", '--export-pdf={}'.format(result), tmpfile]
+        subprocess.check_call(cmd)
+        print("Finished======")
 
 if __name__ == '__main__':
     main()
