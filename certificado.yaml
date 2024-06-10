@@ -1,0 +1,14 @@
+# Filename of the source SVG
+svg_source: "certificado.svg"
+
+# The prefix of all generated PDFs, and the variable name from the
+# replace info to use as a distinction
+result_prefix: 'certificado_django_girls'
+result_distinct: 'name'
+result_event_data:
+  event_name: 'Taller de programación para mujeres Medellín 2024s'
+  event_place_name: 'Universidad EAFIT'
+  event_date: '01 de junio de 2024'
+  event_start_hour: '8:30'
+  event_end_hour: '17:00'
+  event_city: 'Medellín'
