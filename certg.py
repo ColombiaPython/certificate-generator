@@ -13,7 +13,7 @@ import csv
 
 def get_names_and_id():
     dict_info = []
-    with open('registro_asistentes.csv') as csv_file:
+    with open('attendance.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         for line_count, row in enumerate(csv_reader):
             if line_count == 0:
@@ -67,7 +67,8 @@ def main():
         # Below you need to add the route to the executable of inkscape
         # e.g Windows: C:/Program Files/Inkscape/inkscape.exe
         # e.g Mac: /Applications/Inkscape.app/Contents/MacOS/inkscape
-        cmd = ["/Applications/Inkscape.app/Contents/MacOS/inkscape", '--export-pdf={}'.format(result), tmpfile]
+        # e.g Linux: inkscape
+        cmd = ['inkscape', '--export-type=pdf', f'--export-filename={result}', tmpfile]
         subprocess.check_call(cmd)
         print("Finished======")
 

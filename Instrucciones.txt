@@ -1,5 +1,0 @@
-1. Instalar Inkscape en el equipo
-2. Modificar el formato del certificado del archivo "certificado-baquilla" en la carpeta "certificado" o crear uno nuevo
-3. Crear archivo .yaml que contenga la ruta del svg del certificado del punto anterior
-4. Colocar los datos de las personas a certificar en el replace_info del archivo .yaml (Ver archivo "taller_pybaq_sena_2019.yaml")
-5. Una vez tengas todo los anterior, ejecuta el archivo cert.py adicionando en la consola el nombre del archivo .yaml así: "certg.py example.yaml"
