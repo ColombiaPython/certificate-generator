@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Certificate template for certg.py.
+
+  The text between double curly brackets is replaced when the script runs:
+
+    {{name}}             the full_name column of attendance.csv
+    {{identification}}   the id column of attendance.csv
+    {{event_*}}          the result_event_data values in certg.yaml
+
+  Every value is inserted in UPPERCASE by the script.
+
+  SVG text does not wrap, so the font sizes below are chosen to fit a long
+  value on one line: about 32 characters for {{name}} and about 48 for
+  {{event_name}}. Longer values will run past the border - shrink the
+  matching font-size in the <style> block if that happens.
+
+  If you edit this file in Inkscape, do not break the placeholders apart:
+  Inkscape can split a line of text into several <tspan> elements, and a
+  placeholder split across two of them will not be replaced. After editing,
+  check they all survived with:
+
+    grep -o '{{[a-z_]*}}' template.svg | sort -u
+-->
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="297mm" height="210mm" viewBox="0 0 297 210"
+     version="1.1">
+
+  <!-- Restyle the certificate by editing these values. -->
+  <style>
+    text { font-family: 'Helvetica', 'Arial', sans-serif; fill: #2B2B2B; }
+    .accent { fill: #E6337F; }
+    .title { font-size: 9px; font-weight: bold; letter-spacing: 0.6px; }
+    .label { font-size: 6px; }
+    .name { font-size: 12px; font-weight: bold; }
+    .event { font-size: 8px; font-weight: bold; }
+    .detail { font-size: 6.5px; }
+    .sign { font-size: 5.5px; }
+  </style>
+
+  <rect x="0" y="0" width="297" height="210" fill="#FFFFFF"/>
+  <rect x="10" y="10" width="277" height="190" fill="none"
+        stroke="#E6337F" stroke-width="1.2"/>
+  <rect x="13" y="13" width="271" height="184" fill="none"
+        stroke="#E6337F" stroke-width="0.3"/>
+
+  <text class="title accent" x="148.5" y="45" text-anchor="middle">CERTIFICADO DE PARTICIPACIÓN</text>
+
+  <text class="label" x="148.5" y="70" text-anchor="middle">Se certifica que</text>
+
+  <text class="name" x="148.5" y="88" text-anchor="middle">{{name}}</text>
+
+  <line x1="35" y1="93" x2="262" y2="93" stroke="#E6337F" stroke-width="0.4"/>
+
+  <text class="detail" x="148.5" y="102" text-anchor="middle">identificada con documento No. {{identification}}</text>
+
+  <text class="label" x="148.5" y="120" text-anchor="middle">participó en</text>
+
+  <text class="event" x="148.5" y="133" text-anchor="middle">{{event_name}}</text>
+
+  <text class="detail" x="148.5" y="147" text-anchor="middle">realizado en {{event_place_name}}, {{event_city}}</text>
+
+  <text class="detail" x="148.5" y="157" text-anchor="middle">el {{event_date}}, de {{event_start_hour}} a {{event_end_hour}}</text>
+
+  <line x1="99" y1="178" x2="198" y2="178" stroke="#2B2B2B" stroke-width="0.3"/>
+  <text class="sign" x="148.5" y="184" text-anchor="middle">Organización</text>
+  <text class="sign accent" x="148.5" y="191" text-anchor="middle">Django Girls {{event_city}}</text>
+
+</svg>
